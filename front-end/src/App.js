@@ -53,30 +53,25 @@ class App extends Component {
     const self = this;
     axios.post('/axios', data)
     .then(function(response){
-      /*
+      
       let mean = response.data.mean;
       //console.log("returned mean: " + response.data.mean);
       let median = response.data.median;
       //console.log("returned median: " + response.data.median);
-      let mode = response.data.mode;
-      //console.log("returned mode: " + response.data.mode);
+      let mode = (response.data.mode);
+      //console.log("returned mode: " + mode);
       
       mean = (1.8 * (mean - 273) + 32).toFixed(2);
-      //console.log("after conversion mean: " + mean);
       median = (1.8 * (median - 273) + 32).toFixed(2);
-      //console.log("after conversion median: " + median);
       mode = (1.8 * (mode - 273) + 32).toFixed(2);
-      //console.log("after conversion mode: " + mode);
-      console.log("error: " + response.data.error);
       self.setState(() => ({ mean: mean }));
       self.setState(() => ({ median: median }));
-      self.setState(() => ({ mode: mode }));
-      */
+      self.setState(() => ({ mode: mode }));      
 
-      let temp = response.data.temp;
+      
       let city = response.data.city;
-      self.setState(() => ({ temp: temp }));
       self.setState(() => ({ city: city }));
+      
     })
     .catch(function(error){
       console.log(error);
@@ -108,9 +103,10 @@ class App extends Component {
           {this.state.error && <p>{this.state.error}</p>}
           {this.state.city && <p>{this.state.city}</p>}
           {this.state.temp && <p>Local Temp: {this.state.temp}</p>}
-          {this.state.mean && <p>Temps Mean: {this.state.mean} &#8457;</p>}
-          {this.state.median && <p>Temps Median: {this.state.median} &#8457;</p>}
-          {this.state.mode && <p>Temps Mode: {this.state.mode} &#8457;</p>}
+          <p>16 Day Forecast</p>
+          {this.state.mean && <p>Mean: {this.state.mean} &#8457;</p>}
+          {this.state.median && <p>Median: {this.state.median} &#8457;</p>}
+          {this.state.mode && <p>Mode: {this.state.mode} &#8457;</p>}
         </div>
       </div>
     );
