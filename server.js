@@ -31,8 +31,10 @@ app.post('/axios', (req, res) => {
     const lon = req.body.lon;
     console.log("lat: " + lat);
     console.log("lon: " + lon);
-    //const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=a25d87dd6745e2efea515ec201da00e9';
-    const url = 'https://samples.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10&appid=b1b15e88fa797225412429c1c50c122a1';
+    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=a25d87dd6745e2efea515ec201da00e9';
+    //const url = 'https://samples.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10&appid=b1b15e88fa797225412429c1c50c122a1';
+    
+    //const url = 'api.openweathermap.org/data/2.5/forecast/daily?lat=35&lon=139&cnt=10&appid=b1b15e88fa797225412429c1c50c122a1';
     //const url = 'https://samples.openweathermap.org/data/2.5/forecast/daily?lat=' + lat + '&lon=' + lon + '&cnt=14&appid=a25d87dd6745e2efea515ec201da00e9';
     //const url = 'https://history.openweathermap.org/data/2.5/history/city?lat=' + lat + '&lon=' + lon + '&type=hour&start=1530835200&end=1532044800&appid=a25d87dd6745e2efea515ec201da00e9'
 
@@ -76,22 +78,31 @@ app.post('/axios', (req, res) => {
     console.log("url: "+ url);
     
     axios.get(url).then(json => {
-        let arrLength = json.data.list.length;
-        let tempArray = [];
+        //let arrLength = json.data.list.length;
+        //let tempArray = [];
+        let localTemp = json.data.main.temp;
+        console.log("temp: " + localTemp);
+        let city = json.data.name;
+        console.log("city: " + city);
+        //console.log("array length: " + json.data.list.length);
         //console.log(tempArray);
         
+        /*
         for (i = 0; i < arrLength; i++) {
             let temp = json.data.list[i].temp.day;
             tempArray.push(temp);
         };
-        
+        */
 
         // functions
+        /*
         let mean = meanFunc(tempArray);
         let median = medianFunc(tempArray);
         let mode = modeFunc(tempArray);
+        */
         
-        res.send({ mean: mean, median: median, mode: mode });
+        //res.send({ mean: mean, median: median, mode: mode });
+        res.send({ temp: localTemp, city: city });
 
     }).catch(error => {
     console.log("this is the error: " + error.response);

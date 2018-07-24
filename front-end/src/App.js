@@ -42,6 +42,7 @@ class App extends Component {
     this.setState(() => ({ lat: undefined }));
     this.setState(() => ({ lon: undefined }));
     this.setState(() => ({ city: undefined }));
+    this.setState(() => ({ temp: undefined }));
     this.setState(() => ({ error: undefined }));
     this.setState(() => ({ mean: undefined }));
     this.setState(() => ({ median: undefined }));
@@ -52,6 +53,7 @@ class App extends Component {
     const self = this;
     axios.post('/axios', data)
     .then(function(response){
+      /*
       let mean = response.data.mean;
       //console.log("returned mean: " + response.data.mean);
       let median = response.data.median;
@@ -69,6 +71,12 @@ class App extends Component {
       self.setState(() => ({ mean: mean }));
       self.setState(() => ({ median: median }));
       self.setState(() => ({ mode: mode }));
+      */
+
+      let temp = response.data.temp;
+      let city = response.data.city;
+      self.setState(() => ({ temp: temp }));
+      self.setState(() => ({ city: city }));
     })
     .catch(function(error){
       console.log(error);
@@ -99,6 +107,7 @@ class App extends Component {
 
           {this.state.error && <p>{this.state.error}</p>}
           {this.state.city && <p>{this.state.city}</p>}
+          {this.state.temp && <p>Local Temp: {this.state.temp}</p>}
           {this.state.mean && <p>Temps Mean: {this.state.mean} &#8457;</p>}
           {this.state.median && <p>Temps Median: {this.state.median} &#8457;</p>}
           {this.state.mode && <p>Temps Mode: {this.state.mode} &#8457;</p>}
