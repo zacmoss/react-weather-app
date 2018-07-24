@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.app-main {
+  text-align: center;
+}
+
+.app-header {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.app-body {
+  padding-top: 20px;
+}
+
