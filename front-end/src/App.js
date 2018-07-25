@@ -88,7 +88,7 @@ class App extends Component {
           </h1>
         </header>
         <div className="app-body">
-          <p>Check the current temperature anywhere on Earth</p>
+          <p><i>Check the current temperature anywhere on Earth</i></p>
           <form onSubmit={this.onSubmit}>
             <div className="row">
               <div className="input-container">
