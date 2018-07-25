@@ -8,8 +8,6 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
-
-
 .app-main {
   text-align: center;
   height: 100vh;
@@ -23,50 +21,28 @@ body {
   font-size: 40px;
   text-shadow: 1px 1px 2px gray;
 }
-
 .app-header {
-  /*
-  background-color: rgba(0, 0, 0, .8);
-  */
   color: black;
   padding: 20px;
 }
-
 .app-body {
-  /*
-  padding-top: 20px;
-  */
   padding: 20px 40px;
   margin-top: 1rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, .8);
   border-radius: 25px;
 }
-
 .row {
   display: flex;
   justify-content: center;
 }
-.input-container {
-  /*
-  margin-right: 1rem;
-  */
-}
 form {
   margin-bottom: 3rem;
 }
-
 form input {
   width: 50px;
   height: 35px;
   text-align: center;
   font-size: 18px;
-  /*
-  padding: 2px;
-  */
 }
 form p {
   margin: 10px;
@@ -81,25 +57,14 @@ form button {
 form button:hover {
   cursor: pointer;
 }
-
+.error {
+  color: red;
+}
 .city {
   font-size: 24px;
 }
 .forecast {
-  /*
-  text-decoration: underline;
-  */
   border-bottom: 1px black solid;
   padding: 2px 4px;
 }
-
-/*
-.form-container {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-*/
 
