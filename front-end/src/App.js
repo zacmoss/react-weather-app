@@ -84,26 +84,29 @@ class App extends Component {
       <div className="app-main">
         <header className="app-header">
           <h1>
-            Zac's 
-            <img alt="fire emoji" src={fire} width="35px" height="35px" />
-            <img alt="fire emoji" src={fire} width="35px" height="35px" />
-            <img alt="fire emoji" src={fire} width="35px" height="35px" />
-            Weather App!
+            Weather App
           </h1>
         </header>
-        
         <div className="app-body">
           <p>Check the current temperature anywhere on Earth</p>
-          <form action="/formpost" method="post" onSubmit={this.onSubmit}>
-            <label>Latitude</label><input placeholder="latitude" name="lat"></input>
-            <label>Longitude</label><input placeholder="longitude" name="lon"></input>
-            <input type="submit" value="Submit"></input>
+          <form onSubmit={this.onSubmit}>
+            <div className="row">
+              <div className="input-container">
+                <p>Latitude</p>
+                <input name="lat"></input>
+              </div>
+              <div className="input-container">
+                <p>Longitude</p>
+                <input name="lon"></input>
+              </div>
+              <button>Check</button>
+            </div>
           </form>
 
           {this.state.error && <p>{this.state.error}</p>}
-          {this.state.city && <p>{this.state.city}</p>}
+          {this.state.city && <p className="city"><strong>{this.state.city}</strong></p>}
           {this.state.temp && <p>Local Temp: {this.state.temp}</p>}
-          <p>16 Day Forecast</p>
+          {this.state.mean && <p><span className="forecast">16 Day Forecast</span></p>}
           {this.state.mean && <p>Mean: {this.state.mean} &#8457;</p>}
           {this.state.median && <p>Median: {this.state.median} &#8457;</p>}
           {this.state.mode && <p>Mode: {this.state.mode} &#8457;</p>}
