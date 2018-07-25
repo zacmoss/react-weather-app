@@ -22,7 +22,7 @@ class App extends Component {
     country: undefined,
     error: undefined,
   }
-  
+
   onSubmit = (e) => {
     e.preventDefault();
 
@@ -86,7 +86,7 @@ class App extends Component {
           </h1>
         </header>
         <div className="app-body">
-          <p><i>Check the current temperature anywhere on Earth</i></p>
+          <p><i>Enter latitude and longitude for forecasted temperatures.</i></p>
           <form onSubmit={this.onSubmit}>
             <div className="row">
               <div className="input-container">
