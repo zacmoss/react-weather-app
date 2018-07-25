@@ -19,15 +19,10 @@ class App extends Component {
     median: undefined,
     mode: undefined,
     city: undefined,
+    country: undefined,
     error: undefined,
   }
-
-  componentDidMount(){
-    
-  };
   
-
-
   onSubmit = (e) => {
     e.preventDefault();
 
@@ -42,6 +37,7 @@ class App extends Component {
     this.setState(() => ({ lat: undefined }));
     this.setState(() => ({ lon: undefined }));
     this.setState(() => ({ city: undefined }));
+    this.setState(() => ({ country: undefined }));
     this.setState(() => ({ temp: undefined }));
     this.setState(() => ({ error: undefined }));
     this.setState(() => ({ mean: undefined }));
@@ -71,6 +67,8 @@ class App extends Component {
       
       let city = response.data.city;
       self.setState(() => ({ city: city }));
+      let country = response.data.country;
+      self.setState(() => ({ country: country }));
       
     })
     .catch(function(error){
@@ -104,7 +102,7 @@ class App extends Component {
           </form>
 
           {this.state.error && <p>{this.state.error}</p>}
-          {this.state.city && <p className="city"><strong>{this.state.city}</strong></p>}
+          {this.state.city && <p className="city"><strong>{this.state.city}, {this.state.country}</strong></p>}
           {this.state.temp && <p>Local Temp: {this.state.temp}</p>}
           {this.state.mean && <p><span className="forecast">16 Day Forecast</span></p>}
           {this.state.mean && <p>Mean: {this.state.mean} &#8457;</p>}

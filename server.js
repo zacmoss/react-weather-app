@@ -42,7 +42,8 @@ app.post('/axios', (req, res) => {
         let tempArray = [];
         
         let city = json.data.city.name;
-        console.log("city: " + city);        
+        console.log("city: " + city);
+        let country = json.data.city.country;      
         
         for (i = 0; i < arrLength; i++) {
             let x = json.data.list[i].main.temp;
@@ -63,7 +64,7 @@ app.post('/axios', (req, res) => {
         console.log(tempArray);
         
         
-        res.send({ mean: mean, median: median, mode: [n], city: city });
+        res.send({ mean: mean, median: median, mode: [n], city: city, country: country });
 
     }).catch(error => {
     console.log("this is the error: " + error.response);

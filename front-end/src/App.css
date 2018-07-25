@@ -19,6 +19,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.app-main h1 {
+  font-size: 40px;
+  text-shadow: 1px 1px 2px gray;
+}
 
 .app-header {
   /*
@@ -33,7 +37,7 @@ body {
   padding-top: 20px;
   */
   padding: 20px 40px;
-  margin: 0;
+  margin-top: 1rem;
   position: absolute;
   top: 50%;
   left: 50%;
