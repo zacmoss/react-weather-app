@@ -21,12 +21,21 @@ class App extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    this.setState(() => ({ city: undefined }));
+    this.setState(() => ({ 
+      city: undefined,
+      country: undefined,
+      error: undefined,
+      mean: undefined,
+      median: undefined,
+      mode: undefined
+    }));
+    /*
     this.setState(() => ({ country: undefined }));
     this.setState(() => ({ error: undefined }));
     this.setState(() => ({ mean: undefined }));
     this.setState(() => ({ median: undefined }));
     this.setState(() => ({ mode: undefined }));
+    */
 
     let lat = e.target.elements.lat.value;
     let lon = e.target.elements.lon.value;
@@ -50,15 +59,23 @@ class App extends Component {
         mean = (1.8 * (mean - 273) + 32).toFixed(2);
         median = (1.8 * (median - 273) + 32).toFixed(2);
         mode = (1.8 * (mode - 273) + 32).toFixed(2);
+        /*
         self.setState(() => ({ mean: mean }));
         self.setState(() => ({ median: median }));
         self.setState(() => ({ mode: mode }));  
+        */
       }    
 
       let city = response.data.city;
-      self.setState(() => ({ city: city }));
+      //self.setState(() => ({ city: city }));
       let country = response.data.country;
-      self.setState(() => ({ country: country }));
+      self.setState(() => ({
+        mean: mean,
+        median: median,
+        mode: mode,
+        city: city,
+        country: country
+      }));
       
       console.log("error returned: " + response.data.error);
     })
