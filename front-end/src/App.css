@@ -11,6 +11,11 @@ body {
 .app-main {
   text-align: center;
   height: 100vh;
+  /* pic2.jpg */
+  /* cloudy2.jpg */
+  /* rain1.jpg */
+  /* snow1.jpg */
+  /* snow2.jpg */
   background-image: url('./images/pic2.jpg');
   background-color: rgba(0, 0, 0, .8);
   background-position: center;
@@ -30,6 +35,7 @@ body {
   margin-top: 1rem;
   background-color: rgba(255, 255, 255, .8);
   border-radius: 25px;
+  /*filter: blur(10px);*/
 }
 .row {
   display: flex;

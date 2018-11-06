@@ -15,7 +15,7 @@ class App extends Component {
     mode: undefined,
     city: undefined,
     country: undefined,
-    error: undefined,
+    error: undefined
   }
 
   onSubmit = (e) => {
