@@ -1,13 +1,46 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import img from './images/test3.png';
 
-// need to do ajax request to server to send lat and lon inputs
-// then server needs to make api call with that data
-// then on completion server needs to send api data back to front-end
-// then front-end needs to display that info
+
+/* ---- Discussion ----
+
+We do an axios request to the server which then hits the api with the coordinates we
+passed through from here. Then, the server responds with temperature data provided
+by the api. We then update the state with that data. Parts of the page are then
+conditionally rendered once those state variables are no longer undefined.
+
+For the geolocation button we use geolocation to grab the user's coordinates and
+updates the state variables to display those coordinates, which in turn updates
+the input values, which are what the onSubmit button grabs to send to the server
+and api.
+
+We are creating 'controlled inputs' when we set the value of the lat and lon inputs
+to the state variables. So, they become uneditable on changes. Due to this, we have
+to create onChange handlers for both inputs where when we make changes the state
+is redefined, thus also redfining the value of the inputs.
+
+*/
 
 class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      temp: undefined,
+      mean: undefined,
+      median: undefined,
+      mode: undefined,
+      city: undefined,
+      country: undefined,
+      error: undefined,
+      geoLatitude: "00",
+      geoLongitude: "00"
+    }
+  }
+  
+/*
   state = {
     temp: undefined,
     mean: undefined,
@@ -15,8 +48,12 @@ class App extends Component {
     mode: undefined,
     city: undefined,
     country: undefined,
-    error: undefined
+    error: undefined,
+    geoLatitude: undefined,
+    geoLongitude: undefined,
+    test: 25
   }
+  */
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -29,13 +66,6 @@ class App extends Component {
       median: undefined,
       mode: undefined
     }));
-    /*
-    this.setState(() => ({ country: undefined }));
-    this.setState(() => ({ error: undefined }));
-    this.setState(() => ({ mean: undefined }));
-    this.setState(() => ({ median: undefined }));
-    this.setState(() => ({ mode: undefined }));
-    */
 
     let lat = e.target.elements.lat.value;
     let lon = e.target.elements.lon.value;
@@ -59,15 +89,9 @@ class App extends Component {
         mean = (1.8 * (mean - 273) + 32).toFixed(2);
         median = (1.8 * (median - 273) + 32).toFixed(2);
         mode = (1.8 * (mode - 273) + 32).toFixed(2);
-        /*
-        self.setState(() => ({ mean: mean }));
-        self.setState(() => ({ median: median }));
-        self.setState(() => ({ mode: mode }));  
-        */
       }    
 
       let city = response.data.city;
-      //self.setState(() => ({ city: city }));
       let country = response.data.country;
       self.setState(() => ({
         mean: mean,
@@ -105,13 +129,16 @@ class App extends Component {
               <div className="row">
                 <div className="input-container">
                   <p>Latitude</p>
-                  <input name="lat"></input>
+                  <input name="lat" value={this.state.geoLatitude} onChange={(e) => {this.onChangeLat(e.target.value)}}></input>
                 </div>
                 <div className="input-container">
                   <p>Longitude</p>
-                  <input name="lon"></input>
+                  <input name="lon" value={this.state.geoLongitude} onChange={(e) => {this.onChangeLon(e.target.value)}}></input>
                 </div>
-                <button>Check</button>
+                <button className="submitButton">Check</button>
+                <div className="geoButton" title="Click to set coordinates to current location" onClick={() => {this.geoLocationHandler()}}>
+                  <img src={img} height="25px" width="25px"></img>
+                </div>
               </div>
             </form>
 
@@ -125,6 +152,20 @@ class App extends Component {
         </div>
       </div>
     );
+  }
+  onChangeLat(val) {
+    this.setState(() => ({geoLatitude: val}));
+  }
+  onChangeLon(val) {
+    this.setState(() => ({geoLongitude: val}));
+  }
+  geoLocationHandler() {
+    let self = this;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let lat = position.coords.latitude.toFixed(2);
+      let lon = position.coords.longitude.toFixed(2);
+      self.setState(() => ({geoLatitude: lat, geoLongitude: lon}));
+    })
   }
 }
 
