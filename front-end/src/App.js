@@ -59,6 +59,8 @@ class App extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
+    console.log('here dude')
+
     this.setState(() => ({ 
       city: undefined,
       country: undefined,
@@ -91,6 +93,7 @@ class App extends Component {
     const self = this;
     axios.post('/axios', data)
     .then(function(response){
+      console.log('at then')
       if (response.data.error) {
         
           self.setState(() => ({ error: "Error with coordinates" }));
@@ -124,7 +127,8 @@ class App extends Component {
       console.log("error returned: " + response.data.error);
     })
     .catch(function(err){
-      console.log("error: " + err.response);
+      console.log(err)
+      console.log("error: " + err.message);
       if (!this.state.error) {
         self.setState(() => ({ error: "here" }))
       }
